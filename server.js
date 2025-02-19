@@ -1,23 +1,27 @@
-const fs = require('fs');
-const dataDir = path.join(__dirname, 'data');
-if (!fs.existsSync(dataDir)){
-    fs.mkdirSync(dataDir, { recursive: true });
-}
 require('dotenv').config();
+const fs = require('fs');
+const path = require('path');
 const express = require('express');
 const nodemailer = require('nodemailer');
 const rateLimit = require('express-rate-limit');
 const cors = require('cors');
-const app = express();
-const port = 3000;
-const path = require('path');  // Only one path import
 const sqlite3 = require('sqlite3').verbose();
 const multer = require('multer');
 const http = require('http');
 const socketIo = require('socket.io');
 const { initializeDatabase, DB_PATH } = require('./database');
-const db = initializeDatabase();
 
+// Initialize Express app
+const app = express();
+const port = process.env.PORT || 3000;
+
+// Create data directory
+const dataDir = path.join(__dirname, 'data');
+if (!fs.existsSync(dataDir)){
+    fs.mkdirSync(dataDir, { recursive: true });
+}
+
+// Server setup
 const server = http.createServer(app);
 const io = socketIo(server);
 
