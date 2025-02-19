@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FG Cabahug - Reviews</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/review.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <script src="js/user_login.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-wrapper">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-trigger">Others<i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html#car-showcase">Overview</a></li>
+                            <li><a href="index.html#why-us">Services</a></li>
+                            <li><a href="index.html#ppf">About PPF</a></li>
+                            <li><a href="ppf.html">More About PPF</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a href="appointment.html">Book Appointment</a></li>
+                    <li><a href="review.html">Reviews</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+                <div class="nav-right">
+                    <a href="login.html" class="login-link">Log In</a>
+                    <div class="logo">
+                        <img src="img/logo/logo.png" alt="FG Logo" class="l_logo">
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="review-hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('img/people/toyota_1.jpg');">
+            <div class="review-hero-content">
+                <h1 class="lato-black">Share Your Experience</h1>
+                <p class="lato-light">Your feedback helps us improve and serve you better</p>
+            </div>
+        </section>
+
+        <section class="review-form-section">
+            <div class="review-container">
+                <div class="review-form-wrapper">
+                    <h2>Write a Review</h2>
+                    <form id="reviewForm" class="review-form">
+                        <div class="rating-container">
+                            <p>Rate your experience:</p>
+                            <div class="stars">
+                                <i class="far fa-star" data-rating="1"></i>
+                                <i class="far fa-star" data-rating="2"></i>
+                                <i class="far fa-star" data-rating="3"></i>
+                                <i class="far fa-star" data-rating="4"></i>
+                                <i class="far fa-star" data-rating="5"></i>
+                            </div>
+                            <input type="hidden" name="rating" id="rating" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <select id="serviceType" name="serviceType" required>
+                                <option value="">Select Service Type</option>
+                                <option value="tinting">Window Tinting</option>
+                                <option value="ppf">Paint Protection Film</option>
+                                <option value="both">Both Services</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <textarea id="review" name="review" placeholder="Share your experience with us..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-review-btn">Submit Review</button>
+                    </form>
+                </div>
+
+                <div class="reviews-display">
+                    <h2>Recent Reviews</h2>
+                    <div class="review-filter">
+                        <label for="starFilter">Filter by rating:</label>
+                        <select id="starFilter">
+                            <option value="">All Ratings</option>
+                            <option value="5">5 Stars</option>
+                            <option value="4">4 Stars</option>
+                            <option value="3">3 Stars</option>
+                            <option value="2">2 Stars</option>
+                            <option value="1">1 Star</option>
+                        </select>
+                    </div>
+                    <div class="reviews-grid">
+                        <!-- Example review cards - These would be populated dynamically -->
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h3>John Doe</h3>
+                                    <div class="review-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <span class="service-tag">Window Tinting</span>
+                            </div>
+                            <p class="review-text">"Excellent service! The team was professional and the results exceeded my expectations."</p>
+                            <span class="review-date">2 days ago</span>
+                        </div>
+                        <!-- More review cards would be added dynamically -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <h2>Follow Us</h2>
+        <div class="footer-social">
+            <p><i class="fa-brands fa-instagram"></i> Instagram</p>
+            <p><i class="fa-brands fa-linkedin"></i> LinkedIn</p>
+        </div>
+        <p>© F.G Cabahug Trading - <a href="#">Privacy Policy</a> - <a href="#">Legal Notices</a></p>
+        <p>cabahugtrading@yahoo.com.ph</p>
+    </footer>
+
+    <script src="js/webpage/review.js"></script>
+</body>
+</html>

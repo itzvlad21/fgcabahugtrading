@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification - FG Cabahug Trading</title>
+    <link rel="stylesheet" href="css/login.css">
+    <style>
+        .verification-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(to right, #105231, #72c293);
+            padding: 20px;
+        }
+
+        .verification-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .verification-box h2 {
+            color: #105231;
+            margin-bottom: 1rem;
+        }
+
+        .verification-box p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #105231;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .success-message {
+            color: #105231;
+            font-weight: bold;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="verification-container">
+        <div class="verification-box">
+            <h2>Email Verification</h2>
+            <div id="spinner" class="spinner"></div>
+            <p id="verificationMessage">Verifying your email...</p>
+            <div id="loginLink" style="display: none;">
+                <a href="/login.html" style="
+                    display: inline-block;
+                    padding: 10px 20px;
+                    background-color: #105231;
+                    color: white;
+                    text-decoration: none;
+                    border-radius: 5px;
+                    margin-top: 20px;">
+                    Go to Login
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('token');
+            const messageElement = document.getElementById('verificationMessage');
+            const spinner = document.getElementById('spinner');
+            const loginLink = document.getElementById('loginLink');
+
+            if (!token) {
+                messageElement.className = 'error-message';
+                messageElement.textContent = 'Invalid verification link';
+                spinner.style.display = 'none';
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/verify-email?token=${token}`);
+                const data = await response.json();
+
+                spinner.style.display = 'none';
+
+                if (response.ok) {
+                    messageElement.className = 'success-message';
+                    messageElement.textContent = data.message;
+                    loginLink.style.display = 'block';
+                } else {
+                    messageElement.className = 'error-message';
+                    messageElement.textContent = data.error;
+                }
+            } catch (error) {
+                spinner.style.display = 'none';
+                messageElement.className = 'error-message';
+                messageElement.textContent = 'An error occurred during verification';
+            }
+        });
+    </script>
+</body>
+</html>

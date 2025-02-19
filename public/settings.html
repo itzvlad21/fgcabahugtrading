@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings - FG Cabahug</title>
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/settings.css">
+    <script src="js/user_login.js"></script>
+    <script src="js/webpage/settings.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-wrapper">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-trigger">Others<i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html#car-showcase">Overview</a></li>
+                            <li><a href="index.html#why-us">Services</a></li>
+                            <li><a href="index.html#ppf">About PPF</a></li>
+                            <li><a href="ppf.html">More About PPF</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a data-cal-link="vladimyr-9cyji1/30min" style="cursor: pointer;">Book Appointment</a></li>
+                    <li><a href="review.html">Reviews</a></li>
+                </ul>
+                <div class="nav-right">
+                    <a href="login.html" class="login-link">Log In</a>
+                    <div class="logo">
+                        <img src="img/logo/logo.png" alt="FG Logo" class="l_logo">
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="settings-container">
+        <div class="settings-wrapper">
+            <aside class="settings-sidebar">
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        JD
+                    </div>
+                    <div class="user-info">
+                        <h3>John Doe</h3>
+                        <p>john.doe@example.com</p>
+                    </div>
+                </div>
+
+                <ul class="settings-nav">
+                    <li>
+                        <a href="#profile" class="active">
+                            <i class="fas fa-user"></i>
+                            Profile Information
+                        </a>
+                    </li>
+                </ul>
+            </aside>
+
+            <div class="settings-main">
+                <div class="settings-content">
+                    <div class="settings-header">
+                        <h2>Profile Information</h2>
+                        <p>Update your personal information and contact details</p>
+                    </div>
+
+                    <div class="settings-grid">
+                        <div class="form-card">
+                            <h3><i class="fas fa-user-circle"></i> Personal Details</h3>
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" id="username" value="johndoe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" value="john.doe@example.com" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" id="fullName" value="John Doe" required>
+                            </div>
+                        </div>
+
+                        <div class="form-card">
+                            <h3><i class="fas fa-phone-alt"></i> Contact Information</h3>
+                            <div class="form-group">
+                                <label for="mobile">Mobile Number</label>
+                                <input type="tel" id="mobile" value="+63 912 345 6789" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <input type="text" id="address" value="123 Main St" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" value="Manila" required>
+                            </div>
+                        </div>
+
+                        <div class="form-card">
+                            <h3><i class="fas fa-lock"></i> Change Password</h3>
+                            <div class="form-group">
+                                <label for="currentPassword">Current Password</label>
+                                <input type="password" id="currentPassword">
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">New Password</label>
+                                <input type="password" id="newPassword">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm New Password</label>
+                                <input type="password" id="confirmPassword">
+                            </div>
+                        </div>
+
+                        <div class="form-card">
+                            <h3><i class="fas fa-map-marker-alt"></i> Additional Information</h3>
+                            <div class="form-group">
+                                <label for="province">Province</label>
+                                <input type="text" id="province" value="Metro Manila" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="zipCode">ZIP Code</label>
+                                <input type="text" id="zipCode" value="1234" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <button type="button" class="cancel-btn">Cancel</button>
+                        <button type="submit" class="save-btn">
+                            <i class="fas fa-save"></i>
+                            Save Changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <!-- Existing footer code -->
+    </footer>
+</body>
+</html>

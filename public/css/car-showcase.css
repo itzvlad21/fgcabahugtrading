@@ -1,0 +1,338 @@
+/* Car Showcase */
+#car-showcase {
+    padding: 4rem 2rem;
+    background-color: #ffffff;
+}
+
+.showcase-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+}
+
+.showcase-content h2 {
+    color: var(--primary-green);
+    margin-bottom: 1.5rem;
+}
+
+.showcase-text {
+    color: var(--text-dark);
+    line-height: 1.8;
+}
+
+/* Car Showcase Updates */
+.car-slider-container {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.car-slider {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+}
+
+.car-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.car-slide.active {
+    display: block;
+    opacity: 1;
+}
+
+.car-info-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+
+.car-info-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+.car-slide img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(15, 85, 63, 0.9);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider-nav:hover {
+    background: rgb(15, 85, 63);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn {
+    left: -20px;
+}
+
+.next-btn {
+    right: -20px;
+}
+
+.slider-indicators {
+    margin-top: 1rem;
+    text-align: center;
+    position: relative;
+}
+
+
+
+.indicators-container {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background: rgb(15, 85, 63);
+    transform: scale(1.2);
+}
+
+.car-slider-container .indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5); /* More visible base state */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid rgb(15, 85, 63); /* Add border to make it more visible */
+}
+
+.car-slider-container .indicator.active {
+    background: rgb(15, 85, 63);
+    transform: scale(1.2);
+    border-color: rgb(15, 85, 63);
+}.car-info-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+
+.car-info-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.car-info-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    transform: scale(0.7) translateY(-30px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.car-info-overlay.active .car-info-card {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+.car-name {
+    color: var(--primary-green);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.car-description {
+    color: #333;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.car-specs-box {
+    background: #f5f5f5;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    color: #444;
+}
+
+.car-features {
+    list-style: none;
+    padding: 0;
+}
+
+.car-features li {
+    padding: 0.5rem 0;
+    color: #555;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.car-features li:before {
+    content: '•';
+    color: var(--primary-green);
+    position: absolute;
+    left: 0;
+    font-size: 1.2rem;
+}
+
+.close-card {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #333;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.close-card:hover {
+    background: #f0f0f0;
+    transform: rotate(90deg);
+}
+
+.image-comparison-wrapper {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.image-comparison {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.comparison-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: left;
+}
+
+.comparison-image.tinted {
+    clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+}
+
+.comparison-slider {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    background: var(--primary-green);
+    transform: translateX(-50%);
+    cursor: ew-resize;
+}
+
+.slider-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background: var(--primary-green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+.slider-button i {
+    font-size: 12px;
+    margin: 0 2px;
+}
+
+.slider-line {
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background: var(--primary-green);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .slider-button {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .slider-button i {
+        font-size: 10px;
+    }
+}

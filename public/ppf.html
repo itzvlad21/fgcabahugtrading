@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FG Cabahug</title>
+    <link rel="stylesheet" href="css/ppf-guide.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <script src="js/user_login.js"></script>
+    <script src="js/webpage/ppf.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-wrapper">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-trigger">Others<i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html#car-showcase">Overview</a></li>
+                            <li><a href="index.html#why-us">Services</a></li>
+                            <li><a href="index.html#ppf">About PPF</a></li>
+                            <li><a href="ppf.html">More About PPF</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a href="appointment.html">Book Appointment</a></li>
+                    <li><a href="review.html">Reviews</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+                <div class="nav-right">
+                    <a href="login.html" class="login-link">Log In</a>
+                    <div class="logo">
+                        <img src="img/logo/logo.png" alt="FG Logo" class="l_logo">
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+    <div class="section-container">
+        <section class="interactive-opener">
+            <div class="conversation-container">
+                <div class="message-box initial-message">
+                    <div class="icon-container">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h1 class="message-title">Protect Your Investment</h1>
+                    <p class="message-text">How would you feel if your brand-new car got a nasty rock chip or a deep scratch tomorrow?</p>
+                    <div class="response-options">
+                        <button class="response-button" data-next="problem">That would be frustrating</button>
+                        <button class="response-button" data-next="problem">I want to prevent that</button>
+                    </div>
+                </div>
+        
+                <div class="message-box problem-message">
+                    <div class="icon-container">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h2 class="message-title">The Reality</h2>
+                    <p class="message-text">Every time you hit the road, your car faces threats: loose gravel, road debris, bird droppings, and harsh UV rays. A single repair can cost ₱50,000 to ₱150,000.</p>
+                    <div class="response-options">
+                        <button class="response-button" data-next="solution">How can I protect my car?</button>
+                        <button class="response-button" data-next="solution">Tell me more</button>
+                    </div>
+                </div>
+        
+                <div class="message-box solution-message">
+                    <div class="icon-container">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h2 class="message-title">The Solution</h2>
+                    <p class="message-text">Introducing Paint Protection Film (PPF) - your car's invisible armor. It self-heals minor scratches and keeps your paint flawless for years.</p>
+                    <a href="#ppf-guide" class="proceed-button">Discover Your Protection Options <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="ppf-guide-section">
+            <div class="ppf-guide-container">
+                <div class="ppf-guide-header">
+                    <h2>Paint Protection Film Guide</h2>
+                    <p>Which type of customer are you?</p>
+                </div>
+    
+                <div class="customer-type-selector">
+                    <div class="type-card" data-type="luxury">
+                        <i class="fas fa-crown"></i>
+                        <h3>Luxury Vehicle Owner</h3>
+                        <p>Premium protection for high-end vehicles</p>
+                    </div>
+                    <div class="type-card" data-type="budget">
+                        <i class="fas fa-piggy-bank"></i>
+                        <h3>Value Seeker</h3>
+                        <p>Smart protection that fits your budget</p>
+                    </div>
+                    <div class="type-card" data-type="enthusiast">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <h3>Car Enthusiast</h3>
+                        <p>Customizable protection for performance vehicles</p>
+                    </div>
+                </div>
+    
+                <div class="benefits-display">
+                    <!-- Benefits will be dynamically loaded here -->
+                </div>
+    
+                <div class="ppf-cta">
+                    <h3>Ready to Protect Your Vehicle?</h3>
+                    <a href="#contact" class="cta-button">Schedule a Consultation</a>
+                </div>
+            </div>
+        </section>
+    </div>
+    </main>
+
+    <footer class="footer">
+        <h2>Follow Us</h2>
+        <div class="footer-social">
+            <p><i class="fa-brands fa-instagram"></i> Instagram</p>
+            <p><i class="fa-brands fa-linkedin"></i> LinkedIn</p>
+        </div>
+        <p>© F.G Cabahug Trading - <a href="#">Privacy Policy</a> - <a href="#">Legal Notices</a></p>
+        <p>cabahugtrading@yahoo.com.ph</p>
+    </footer>
+</body>
+</html>

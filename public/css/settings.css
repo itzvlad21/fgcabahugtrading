@@ -1,0 +1,359 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+html,
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    background-image: linear-gradient(to bottom right, #004e1f 0%, #72c293 100%);
+    background-attachment: fixed;
+}
+
+
+.lato-thin {
+    font-family: "Lato", serif;
+    font-weight: 100;
+    font-style: normal;
+  }
+  
+  .lato-light {
+    font-family: "Lato", serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  .lato-regular {
+    font-family: "Lato", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .lato-bold {
+    font-family: "Lato", serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .lato-black {
+    font-family: "Lato", serif;
+    font-weight: 900;
+    font-style: normal;
+  }
+  
+  .lato-thin-italic {
+    font-family: "Lato", serif;
+    font-weight: 100;
+    font-style: italic;
+  }
+  
+  .lato-light-italic {
+    font-family: "Lato", serif;
+    font-weight: 300;
+    font-style: italic;
+  }
+  
+  .lato-regular-italic {
+    font-family: "Lato", serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+  .lato-bold-italic {
+    font-family: "Lato", serif;
+    font-weight: 700;
+    font-style: italic;
+  }
+  
+  .lato-black-italic {
+    font-family: "Lato", serif;
+    font-weight: 900;
+    font-style: italic;
+  }
+  
+  
+  main {
+    flex: 1;
+    margin-top: 60px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+
+.settings-container {
+    min-height: calc(100vh - 60px);
+    background: #fff;
+    padding: 60px;
+}
+
+.settings-wrapper {
+    display: flex;
+    max-width: 100%;
+    margin: 0 auto;
+    background: #fff;
+    min-height: calc(100vh - 60px);
+}
+
+.settings-sidebar {
+    width: 250px;
+    background: #fff;
+    border-right: 1px solid #e9ecef;
+    position: fixed;
+    top: 60px; /* Height of navbar */
+    left: 0; /* Align to the left edge */
+    bottom: 0;
+    overflow-y: auto;
+}
+
+.settings-main {
+    flex: 1;
+    margin-left: 250px; /* Match sidebar width */
+    padding: 2rem;
+    background: #fff;
+}
+
+.user-profile {
+    padding: 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid #e9ecef;
+    margin-bottom: 1.5rem;
+}
+
+.user-avatar {
+    width: 80px;
+    height: 80px;
+    background: #0F553F;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    color: white;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.user-info h3 {
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.user-info p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.settings-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.settings-nav li {
+    padding: 0;
+    margin: 0;
+}
+
+.settings-nav a {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    color: #555;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.settings-nav a:hover {
+    background: #f1f3f5;
+    color: #0F553F;
+    border-left-color: #0F553F;
+}
+
+.settings-nav a.active {
+    background: #e8f5e9;
+    color: #0F553F;
+    border-left-color: #0F553F;
+    font-weight: 600;
+}
+
+.settings-nav i {
+    width: 24px;
+    margin-right: 1rem;
+}
+
+.settings-content {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.settings-header {
+    padding: 2rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.settings-header h2 {
+    color: #333;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.settings-header p {
+    color: #666;
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
+}
+
+.settings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.form-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    border: 1px solid #e9ecef;
+}
+
+.form-card h3 {
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-card h3 i {
+    color: #0F553F;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #0F553F;
+    box-shadow: 0 0 0 3px rgba(15, 85, 63, 0.1);
+}
+
+.form-group input:disabled {
+    background: #f8f9fa;
+    cursor: not-allowed;
+}
+
+.save-btn {
+    background: #0F553F;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.save-btn:hover {
+    background: #0a4432;
+    transform: translateY(-1px);
+}
+
+.actions {
+    padding: 1.5rem 2rem;
+    background: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.cancel-btn {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cancel-btn:hover {
+    background: #f1f3f5;
+}
+
+@media (max-width: 1024px) {
+    .settings-wrapper {
+        flex-direction: column;
+    }
+
+    .settings-sidebar {
+        width: 100%;
+        position: static;
+        height: auto;
+    }
+
+    .settings-main {
+        margin-left: 0;
+    }
+
+    .settings-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .settings-container {
+        padding-top: 0;
+    }
+
+    .settings-header {
+        padding: 1.5rem;
+    }
+
+    .settings-grid {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+}
+
+.dropdown-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem;
+}
+
+.dropdown-menu li {
+    list-style-type: none;
+    margin: 0;
+}

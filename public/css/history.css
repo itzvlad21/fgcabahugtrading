@@ -1,0 +1,282 @@
+/* History Timeline Section */
+.history-section {
+    background-image: linear-gradient(to bottom right,  #004e1f 0%, #72c293 100%);
+    background-size: cover, 40rem 4rem, auto;
+    padding: 6rem 2rem;
+    position: relative;
+    min-height: 100vh;
+}
+
+.history-section h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 4rem;
+    font-size: 2.5rem;
+}
+
+.timeline-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    padding: 2rem 0;
+}
+
+/* Timeline line */
+.timeline-line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    background-color: white;
+    transform: translateX(-50%);
+}
+
+/* Timeline items */
+.timeline-item {
+    position: relative;
+    margin-bottom: 8rem;
+    display: grid;
+    grid-template-columns: 1fr 50px 1fr;
+    gap: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+
+
+/* Timeline dots */
+.timeline-dot {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+/* Content positioning */
+.timeline-content {
+    color: rgb(255, 255, 255);
+    padding: 2rem;
+    max-width: 100%;
+    width: auto;
+}
+
+/* Style for year */
+.timeline-content .year {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: rgb(255, 255, 255);
+    background: rgba(0, 0, 0, 0.8);
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+}
+
+/* Style for title */
+.timeline-content h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: rgb(255, 255, 255);
+    background: rgba(0, 0, 0, 0.8);
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+}
+
+/* Style for description */
+.timeline-content p {
+    line-height: 1.8;
+    font-size: 1.1rem;
+    background: rgba(0, 0, 0, 0.8);
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+}
+
+/* Left items (odd) */
+
+.timeline-item:nth-child(odd) {
+    grid-template-areas: "image dot content";
+}
+
+.timeline-item:nth-child(even) {
+    grid-template-areas: "content dot image";
+}
+
+
+.timeline-item:nth-child(odd) .timeline-image {
+    grid-area: image;
+    justify-self: end;
+    margin-right: 25px;
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+    grid-area: content;
+    justify-self: start;
+    margin-left: 25px;
+    text-align: left;
+}
+
+
+/* Right side timeline items */
+.timeline-item:nth-child(even) .timeline-image {
+    grid-area: image;
+    justify-self: start;
+    margin-left: 25px;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    grid-area: content;
+    justify-self: end;
+    margin-right: 25px;
+    text-align: right;
+}
+
+
+/* Ensure consistent text alignment */
+.timeline-item:nth-child(odd) .timeline-content {
+    text-align: left;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    text-align: right;
+}
+
+/* Standardize content styling */
+.timeline-content {
+    color: rgb(255, 255, 255);
+    padding: 2rem;
+    width: 400px; /* Fixed width */
+}
+
+/* Keep consistent text sizing */
+.timeline-content .year {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: rgb(255, 255, 255);
+}
+
+.timeline-content h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: rgb(255, 255, 255);
+}
+
+.timeline-content p {
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+/* Image styling */
+.timeline-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+.timeline-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* Animation classes */
+.timeline-line.animate {
+    height: 100%;
+}
+
+.timeline-item.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline-item.animate .timeline-dot {
+    opacity: 1;
+}
+
+.timeline-item.animate .timeline-image {
+    opacity: 1;
+}
+
+/* Responsive design */
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .timeline-item {
+        grid-template-columns: 1fr 50px 1fr;
+        margin-bottom: 3rem;
+    }
+
+    .timeline-content, .timeline-image {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .timeline-image {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .timeline-image img {
+        min-height: 250px; /* Ensure minimum height on mobile */
+        object-fit: cover;
+    }
+
+    /* Adjust layout for both even and odd items */
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        grid-template-areas: "content" "image";
+    }
+
+    .timeline-item:nth-child(odd) .timeline-image,
+    .timeline-item:nth-child(even) .timeline-image {
+        margin: 0;
+        justify-self: center;
+        width: 100%;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content,
+    .timeline-item:nth-child(even) .timeline-content {
+        margin: 0;
+        text-align: center;
+    }
+}
+
+/* Additional adjustment for very small screens */
+@media (max-width: 480px) {
+    .timeline-image img {
+        min-height: 200px;
+    }
+}
+
+@media (max-width: 576px) {
+    .timeline-item {
+        gap: 5px;
+    }
+
+    .timeline-content .year {
+        font-size: 2rem;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.5rem;
+    }
+}

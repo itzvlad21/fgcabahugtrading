@@ -1,0 +1,56 @@
+[
+  {
+    "id": "1739951247457",
+    "rating": 1,
+    "name": "derfderf",
+    "email": "hahatdog@gmail.com",
+    "serviceType": "both",
+    "review": "yahoo!!!!!!!!!!!!!!!!!!",
+    "date": "2025-02-19T07:47:27.458Z"
+  },
+  {
+    "id": "1739754664061",
+    "rating": 3,
+    "name": "Kendrick",
+    "email": "kendrick@gmail.com",
+    "serviceType": "both",
+    "review": "It's aight",
+    "date": "2025-02-17T01:11:04.061Z"
+  },
+  {
+    "id": "1739754613024",
+    "rating": 4,
+    "name": "Kenneth Saloma",
+    "email": "Kenneth@gmail.com",
+    "serviceType": "both",
+    "review": "nice",
+    "date": "2025-02-17T01:10:13.024Z"
+  },
+  {
+    "id": "1739290428199",
+    "rating": 5,
+    "name": "Donald Trump",
+    "email": "Donald@gmail.com",
+    "serviceType": "tinting",
+    "review": "The staff is friendly, the service is good. perfect for an american like me.",
+    "date": "2025-02-11T16:13:48.199Z"
+  },
+  {
+    "id": "1739290364331",
+    "rating": 5,
+    "name": "John Cena",
+    "email": "Joe@gmail.com",
+    "serviceType": "both",
+    "review": "THE SERVICE IS VERY GOOD",
+    "date": "2025-02-11T16:12:44.331Z"
+  },
+  {
+    "id": "1739290120416",
+    "rating": 5,
+    "name": "Rohan Millan",
+    "email": "c4ffulatte@gmail.com",
+    "serviceType": "ppf",
+    "review": "Pog",
+    "date": "2025-02-11T16:08:40.416Z"
+  }
+]

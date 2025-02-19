@@ -1,0 +1,56 @@
+/* Footer */
+.footer {
+    background: #1E1E1E;
+    padding: 2rem 0;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+}
+
+.footer h2 {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    font-weight: normal;
+}
+
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.footer-social p {
+    color: #ffffff;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer p {
+    color: #ffffff;
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+}
+
+.footer a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Remove bullet points from dropdown menu */
+.dropdown-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem;
+}
+
+.dropdown-menu li {
+    list-style-type: none;
+    margin: 0;
+}

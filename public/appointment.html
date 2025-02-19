@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - FG Cabahug</title>
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/appointment.css">
+    <script src="js/user_login.js"></script>
+    <script src="js/script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .appointment-container {
+            min-height: calc(100vh - 60px);
+            padding: 4rem 2rem;
+            background-image: linear-gradient(to bottom right, #004e1f 0%, #72c293 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .appointment-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 3rem;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .appointment-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .appointment-header h1 {
+            color: var(--primary-green);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .agreement-section {
+            margin-bottom: 2rem;
+        }
+
+        .agreement-section h2 {
+            color: var(--primary-green);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .agreement-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .agreement-list li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(15, 85, 63, 0.05);
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            color: #333;
+        }
+
+        .agreement-list li i {
+            color: var(--primary-green);
+        }
+
+        .book-now-btn {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .book-now-btn:hover {
+            background: #0a4432;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .appointment-container {
+                padding: 2rem 1rem;
+            }
+
+            .appointment-card {
+                padding: 2rem;
+            }
+
+            .appointment-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-wrapper">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-trigger">Others<i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html#car-showcase">Overview</a></li>
+                            <li><a href="index.html#why-us">Services</a></li>
+                            <li><a href="index.html#ppf">About PPF</a></li>
+                            <li><a href="ppf.html">More About PPF</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a href="appointment.html">Book Appointment</a></li>
+                    <li><a href="review.html">Reviews</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+                <div class="nav-right">
+                    <a href="login.html" class="login-link">Log In</a>
+                    <div class="logo">
+                        <img src="img/logo/logo.png" alt="FG Logo" class="l_logo">
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="appointment-container">
+            <div class="appointment-card">
+                <div class="appointment-header">
+                    <h1>Book an Appointment</h1>
+                </div>
+                
+                <div class="agreement-section">
+                    <h2>By booking an appointment, you agree to:</h2>
+                    <ul class="agreement-list">
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            Arrive 15 minutes before your scheduled appointment
+                        </li>
+                        <li>
+                            <i class="fas fa-calendar-check"></i>
+                            Provide 24-hour notice for cancellations
+                        </li>
+                        <li>
+                            <i class="fas fa-car"></i>
+                            Ensure your vehicle is clean and ready for service
+                        </li>
+                        <li>
+                            <i class="fas fa-file-signature"></i>
+                            Complete all required documentation before service
+                        </li>
+                    </ul>
+                </div>
+
+                <button class="book-now-btn" data-cal-link="vladimyr-9cyji1/30min">
+                    Book Now
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <h2>Follow Us</h2>
+        <div class="footer-social">
+            <p><i class="fa-brands fa-instagram"></i> Instagram</p>
+            <p><i class="fa-brands fa-linkedin"></i> LinkedIn</p>
+        </div>
+        <p>© F.G Cabahug Trading - <a href="#">Privacy Policy</a> - <a href="#">Legal Notices</a></p>
+        <p>cabahugtrading@yahoo.com.ph</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,57 @@
+/* Brands Section */
+#brands {
+    padding: 3rem 0;
+    background-color: #1c1c1c;
+}
+
+.brands-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+    padding: 0 2rem;
+}
+
+.brand-logo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.brand-logo:hover {
+    transform: scale(1.05);
+}
+
+.brand-logo img {
+    width: 200px;
+    height: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(1); /* Makes logos white */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .brands-container {
+        flex-direction: column;
+        gap: 3rem;
+    }
+    
+    .brand-logo img {
+        width: 150px;
+    }
+}
+
+.dropdown-menu {
+    list-style: none; 
+    padding: 0.5rem;
+}
+
+.dropdown-menu li {
+    list-style-type: none; 
+    margin: 0;
+}

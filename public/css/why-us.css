@@ -1,0 +1,220 @@
+/* Why Us Section */
+#why-us {
+    padding: 6rem 4rem;
+    background-color: white;
+    min-height: 100vh;
+    position: relative;
+}
+
+.why-us-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.top-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    padding-bottom: 4rem;
+}
+
+.left-content {
+    padding-right: 2rem;
+}
+
+.subtitle {
+    color: #333;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.left-content h2 {
+    color: var(--primary-green);
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
+
+.white-line {
+    width: 100px;
+    height: 3px;
+    background-color: white;
+    margin: 1.5rem 0;
+}
+
+.description {
+    color: #666;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 600px;
+}
+
+.features-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.feature-card {
+    border-radius: 15px;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.card-one {
+    background-color: #105231;
+}
+
+.card-two {
+    background-color: #29714D;
+}
+
+.card-three {
+    background-color: #478F6B;
+}
+
+.feature-card:hover {
+    transform: translateX(-10px);
+}
+
+.feature-content {
+    flex: 1;
+    padding-right: 2rem;
+}
+
+.feature-content h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.feature-content p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.feature-icon {
+    font-size: 2rem;
+    color: white;
+    min-width: 60px;
+    text-align: center;
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: #e0e0e0;
+}
+
+.bottom-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    padding-top: 4rem;
+    position: relative;
+}
+
+.bottom-content h2 {
+    color: var(--primary-green);
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
+
+.bottom-content p {
+    color: #666;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.book-call {
+    background-color: var(--primary-green);
+    color: white;
+    border: none;
+    padding: 1.5rem 3rem; /* Increased padding */
+    border-radius: 8px; /* Slightly increased border radius */
+    font-size: 1.2rem; /* Larger font size */
+    cursor: pointer;
+    display: block; /* Changed to block for centering */
+    margin: 0 auto; /* Center horizontally */
+    max-width: fit-content; /* Prevent button from stretching */
+    text-align: center;
+    transition: all 0.3s ease;
+    font-weight: 600; /* Make text slightly bolder */
+    text-transform: uppercase; /* Optional: makes it more prominent */
+}
+
+.book-call:hover {
+    background-color: #0a4432;
+    transform: translateY(-3px); /* Slightly enhanced hover effect */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Added shadow on hover */
+}
+
+.bottom-content {
+    text-align: center; /* Center all content in bottom-content */
+    padding: 2rem 0; /* Add some vertical spacing */
+}
+
+.service-professional {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.service-professional img {
+    max-height: 600px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .top-section,
+    .bottom-section {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .left-content {
+        padding-right: 0;
+    }
+    
+    .service-professional {
+        justify-content: center;
+    }
+    
+    .service-professional img {
+        max-height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    #why-us {
+        padding: 3rem 1.5rem;
+    }
+
+    .left-content h2,
+    .bottom-content h2 {
+        font-size: 2.5rem;
+    }
+
+    .feature-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .feature-content {
+        padding-right: 0;
+        padding-bottom: 1rem;
+    }
+}
