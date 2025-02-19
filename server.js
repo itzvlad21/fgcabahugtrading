@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const nodemailer = require('nodemailer');
 const rateLimit = require('express-rate-limit');
+const db = new sqlite3.Database(process.env.DB_PATH);
 const cors = require('cors');
 const app = express();
 const port = 3000;
