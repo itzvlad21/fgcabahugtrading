@@ -10,6 +10,7 @@ const multer = require('multer');
 const http = require('http');
 const socketIo = require('socket.io');
 const { initializeDatabase, DB_PATH } = require('./database');
+const db = initializeDatabase();
 
 // Initialize Express app
 const app = express();
