@@ -18,8 +18,12 @@ const port = process.env.PORT || 3000;
 
 // Create data directory
 const dataDir = path.join(__dirname, 'data');
-if (!fs.existsSync(dataDir)){
-    fs.mkdirSync(dataDir, { recursive: true });
+try {
+    if (!fs.existsSync(dataDir)) {
+        fs.mkdirSync(dataDir, { recursive: true });
+    }
+} catch (err) {
+    console.error('Error creating data directory:', err);
 }
 
 // Server setup
@@ -726,21 +730,23 @@ app.post('/api/send-email', async (req, res) => {
 const REVIEWS_FILE = path.join(__dirname, 'data', 'reviews.json');
 
 // Ensure data directory exists
-async function ensureDataDir() {
-    const dataDir = path.join(__dirname, 'data');
+function ensureDataDir() {
     try {
-        await fs.access(dataDir);
-    } catch {
-        await fs.mkdir(dataDir);
+        if (!fs.existsSync(dataDir)) {
+            fs.mkdirSync(dataDir, { recursive: true });
+        }
+    } catch (err) {
+        console.error('Error creating data directory:', err);
     }
 }
 
-// Initialize reviews file if it doesn't exist
-async function initializeReviewsFile() {
+function initializeReviewsFile() {
     try {
-        await fs.access(REVIEWS_FILE);
-    } catch {
-        await fs.writeFile(REVIEWS_FILE, JSON.stringify([]));
+        if (!fs.existsSync(REVIEWS_FILE)) {
+            fs.writeFileSync(REVIEWS_FILE, JSON.stringify([]));
+        }
+    } catch (err) {
+        console.error('Error creating reviews file:', err);
     }
 }
 
@@ -751,10 +757,9 @@ const reviewLimiter = rateLimit({
     message: { error: 'Too many reviews submitted. Please try again later.' }
 });
 
-// Initialize data storage
-(async () => {
-    await ensureDataDir();
-    await initializeReviewsFile();
+(() => {
+    ensureDataDir();
+    initializeReviewsFile();
 })();
 
 // Middleware for parsing JSON with size limit
