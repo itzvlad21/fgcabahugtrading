@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: fgcabahugtrading
+    env: node
+    buildCommand: npm run build
+    startCommand: npm start
+    nodeVersion: 18.17.0
+    envVars:
+      - key: NODE_VERSION
+        value: 18.17.0
+      - key: PYTHON_VERSION 
+        value: 3.9.0
