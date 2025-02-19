@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const nodemailer = require('nodemailer');
 const rateLimit = require('express-rate-limit');
-const db = new sqlite3.Database(process.env.DB_PATH);
 const cors = require('cors');
 const app = express();
 const port = 3000;
@@ -12,6 +11,9 @@ const sqlite3 = require('sqlite3').verbose();
 const multer = require('multer');
 const http = require('http');
 const socketIo = require('socket.io');
+const path = require('path');
+const { initializeDatabase, DB_PATH } = require('./database');
+const db = initializeDatabase();
 
 const server = http.createServer(app);
 const io = socketIo(server);
@@ -216,8 +218,6 @@ async function getChatHistory(roomId) {
     return chatHistory.get(roomId) || [];
 }
 
-// Create database folder if it doesn't exist
-const DB_PATH = path.join(__dirname, 'data', 'database.sqlite');
 
 // Configure CORS to allow requests from live server
 app.use(cors({
@@ -239,156 +239,6 @@ app.use(cors({
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('public'));
-
-const db = new sqlite3.Database(DB_PATH, (err) => {
-    if (err) {
-        console.error('Error opening database', err);
-        return;
-    }
-    console.log('Connected to SQLite database');
-
-    // Create tables
-    db.serialize(() => {
-        
-
-        db.run(`CREATE INDEX IF NOT EXISTS idx_users_email ON users(email)`);
-        db.run(`CREATE INDEX IF NOT EXISTS idx_users_username ON users(username)`);
-        db.run(`CREATE INDEX IF NOT EXISTS idx_products_brand ON products(brand_id)`);
-        db.run(`CREATE INDEX IF NOT EXISTS idx_bookings_date ON bookings(booking_date)`);
-
-        // Create users table if not exists
-        db.run(`CREATE TABLE IF NOT EXISTS brands (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT NOT NULL,
-            description TEXT,
-            type TEXT NOT NULL,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            logo TEXT
-        )`);
-
-        db.run(`CREATE TABLE IF NOT EXISTS products (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            brand_id INTEGER NOT NULL,
-            name TEXT NOT NULL,
-            description TEXT,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (brand_id) REFERENCES brands (id)
-        )`);
-
-        // FAQ Categories Table
-    db.run(`CREATE TABLE IF NOT EXISTS faq_categories (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
-        display_order INTEGER NOT NULL,
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    )`);
-
-    // FAQ Questions Table
-    db.run(`CREATE TABLE IF NOT EXISTS faq_questions (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        category_id INTEGER NOT NULL,
-        question TEXT NOT NULL,
-        answer TEXT NOT NULL,
-        display_order INTEGER NOT NULL,
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (category_id) REFERENCES faq_categories (id)
-    )`);
-
-        db.serialize(() => {
-            db.run(`CREATE TABLE IF NOT EXISTS contact_submissions (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                name TEXT NOT NULL,
-                email TEXT NOT NULL,
-                phone TEXT,
-                message TEXT,
-                submitted_at DATETIME DEFAULT CURRENT_TIMESTAMP
-            )`);
-        });
-
-        db.run(`CREATE TABLE IF NOT EXISTS bookings (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            full_name TEXT NOT NULL,
-            email TEXT NOT NULL,
-            phone_number TEXT,
-            booking_date DATETIME NOT NULL,
-            inquiry TEXT,
-            status TEXT DEFAULT 'pending',
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            cal_booking_id TEXT UNIQUE
-        )`);
-
-        db.run(`CREATE TABLE IF NOT EXISTS verification_tokens (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER NOT NULL,
-            token TEXT NOT NULL,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            expires_at DATETIME NOT NULL,
-            used INTEGER DEFAULT 0,
-            FOREIGN KEY (user_id) REFERENCES users(id)
-        )`);
-
-        db.run(`CREATE TABLE IF NOT EXISTS password_reset_tokens (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER NOT NULL,
-            token TEXT NOT NULL,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            expires_at DATETIME NOT NULL,
-            used INTEGER DEFAULT 0,
-            FOREIGN KEY (user_id) REFERENCES users(id)
-        )`);
-
-        db.run(`CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT UNIQUE,
-            email TEXT UNIQUE,
-            password TEXT,
-            fullName TEXT,
-            mobile TEXT,
-            address TEXT,
-            province TEXT,
-            city TEXT,
-            zipCode TEXT,
-            role TEXT NOT NULL DEFAULT 'member',
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            email_verified INTEGER DEFAULT 0,
-            verification_token TEXT,
-            token_expiry DATETIME
-        )`, (err) => {
-            if (err) {
-                console.error('Error creating users table:', err);
-                return;
-            }
-            
-            // Check if admin exists before creating
-            db.get('SELECT * FROM users WHERE username = ?', ['admin'], (err, user) => {
-                if (err) {
-                    console.error('Error checking admin:', err);
-                    return;
-                }
-                
-                // Only create admin if it doesn't exist
-                if (!user) {
-                    const stmt = db.prepare(`
-                        INSERT INTO users (username, email, password, fullName, role)
-                        VALUES (?, ?, ?, ?, ?)
-                    `);
-                    
-                    stmt.run(['admin', 'admin@example.com', 'admin123', 'System Administrator', 'admin'], 
-                        function(err) {
-                            if (err) {
-                                console.error('Error creating admin:', err);
-                            } else {
-                                console.log('Initial admin account created');
-                            }
-                            stmt.finalize();
-                        }
-                    );
-                }
-            });
-        });
-        
-    });
-});
 
 // Admin middleware
 const requireAdmin = (req, res, next) => {
@@ -1705,3 +1555,5 @@ process.on('SIGINT', () => {
         process.exit(0);
     });
 });
+
+module.exports = db;
