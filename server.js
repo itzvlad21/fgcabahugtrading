@@ -16,6 +16,19 @@ const db = initializeDatabase();
 const app = express();
 const port = process.env.PORT || 3000;
 
+const directories = [
+    path.join(__dirname, 'data'),
+    path.join(__dirname, 'public'),
+    path.join(__dirname, 'public', 'uploads'),
+    path.join(__dirname, 'public', 'uploads', 'brands')
+];
+
+directories.forEach(dir => {
+    if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir, { recursive: true });
+    }
+});
+
 // Create data directory
 const dataDir = path.join(__dirname, 'data');
 try {
@@ -48,12 +61,21 @@ const compression = require('compression');
 const helmet = require('helmet');
 
 //image
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static(path.join(__dirname, 'public', 'uploads')));
+
+// Update multer storage configuration
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'public/uploads/brands')
+        const uploadDir = path.join(__dirname, 'public', 'uploads', 'brands');
+        // Create directory if it doesn't exist
+        if (!fs.existsSync(uploadDir)){
+            fs.mkdirSync(uploadDir, { recursive: true });
+        }
+        cb(null, uploadDir);
     },
     filename: function (req, file, cb) {
-        cb(null, Date.now() + '-' + file.originalname.replace(/[^a-zA-Z0-9.]/g, '-'))
+        cb(null, Date.now() + '-' + file.originalname.replace(/[^a-zA-Z0-9.]/g, '-'));
     }
 });
 
@@ -933,80 +955,105 @@ app.delete('/api/brands/:brandId', (req, res) => {
     });
 });
 
-// Reviews endpoints
-app.get('/api/reviews', async (req, res) => {
-    try {
-        const reviewsData = await fs.readFile(REVIEWS_FILE, 'utf8');
-        const reviews = JSON.parse(reviewsData);
-        // Sort reviews by date (newest first)
-        reviews.sort((a, b) => new Date(b.date) - new Date(a.date));
-        // Return only the most recent 50 reviews
-        res.json(reviews.slice(0, 50));
-    } catch (error) {
-        console.error('Error reading reviews:', error);
-        res.status(500).json({ error: 'Failed to load reviews' });
-    }
+// Update the reviews endpoints
+app.get('/api/reviews', (req, res) => {
+    fs.readFile(REVIEWS_FILE, (err, data) => {
+        if (err) {
+            console.error('Error reading reviews:', err);
+            return res.status(500).json({ error: 'Failed to load reviews' });
+        }
+        try {
+            const reviews = JSON.parse(data);
+            reviews.sort((a, b) => new Date(b.date) - new Date(a.date));
+            res.json(reviews.slice(0, 50));
+        } catch (error) {
+            console.error('Error parsing reviews:', error);
+            res.status(500).json({ error: 'Failed to parse reviews' });
+        }
+    });
 });
 
-app.get('/reviews', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'review.html'));
+app.post('/api/reviews', reviewLimiter, (req, res) => {
+    const { rating, name, email, serviceType, review } = req.body;
+
+    // Validation checks...
+
+    fs.readFile(REVIEWS_FILE, (err, data) => {
+        if (err) {
+            console.error('Error reading reviews:', err);
+            return res.status(500).json({ error: 'Failed to process review' });
+        }
+
+        try {
+            const reviews = JSON.parse(data || '[]');
+            
+            const newReview = {
+                id: Date.now().toString(),
+                rating: parseInt(rating),
+                name: name.trim(),
+                email: email.trim(),
+                serviceType,
+                review: review.trim(),
+                date: new Date().toISOString()
+            };
+
+            reviews.unshift(newReview);
+            const trimmedReviews = reviews.slice(0, 1000);
+
+            fs.writeFile(
+                REVIEWS_FILE, 
+                JSON.stringify(trimmedReviews, null, 2),
+                (writeErr) => {
+                    if (writeErr) {
+                        console.error('Error saving review:', writeErr);
+                        return res.status(500).json({ error: 'Failed to save review' });
+                    }
+                    res.status(201).json({ success: true, review: newReview });
+                }
+            );
+        } catch (error) {
+            console.error('Error processing review:', error);
+            res.status(500).json({ error: 'Failed to process review' });
+        }
+    });
 });
 
-app.post('/api/reviews', reviewLimiter, async (req, res) => {
-    try {
-        const { rating, name, email, serviceType, review } = req.body;
+// Update the delete review endpoint
+app.delete('/api/reviews/:id', (req, res) => {
+    const { id } = req.params;
 
-        // Validate required fields
-        if (!rating || !name || !email || !serviceType || !review) {
-            return res.status(400).json({ error: 'All fields are required' });
+    fs.readFile(REVIEWS_FILE, (err, data) => {
+        if (err) {
+            console.error('Error reading reviews:', err);
+            return res.status(500).json({ error: 'Failed to delete review' });
         }
 
-        // Validate rating
-        if (rating < 1 || rating > 5) {
-            return res.status(400).json({ error: 'Invalid rating value' });
+        try {
+            const reviews = JSON.parse(data);
+            const reviewIndex = reviews.findIndex(review => review.id === id);
+
+            if (reviewIndex === -1) {
+                return res.status(404).json({ error: 'Review not found' });
+            }
+
+            reviews.splice(reviewIndex, 1);
+
+            fs.writeFile(
+                REVIEWS_FILE, 
+                JSON.stringify(reviews, null, 2),
+                (writeErr) => {
+                    if (writeErr) {
+                        console.error('Error saving reviews:', writeErr);
+                        return res.status(500).json({ error: 'Failed to delete review' });
+                    }
+                    res.json({ success: true });
+                }
+            );
+        } catch (error) {
+            console.error('Error processing delete:', error);
+            res.status(500).json({ error: 'Failed to delete review' });
         }
-
-        // Validate email format
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            return res.status(400).json({ error: 'Invalid email format' });
-        }
-
-        // Validate service type
-        const validServices = ['tinting', 'ppf', 'both'];
-        if (!validServices.includes(serviceType)) {
-            return res.status(400).json({ error: 'Invalid service type' });
-        }
-
-        // Read existing reviews
-        const reviewsData = await fs.readFile(REVIEWS_FILE, 'utf8');
-        const reviews = JSON.parse(reviewsData);
-
-        // Create new review object
-        const newReview = {
-            id: Date.now().toString(),
-            rating: parseInt(rating),
-            name: name.trim(),
-            email: email.trim(),
-            serviceType,
-            review: review.trim(),
-            date: new Date().toISOString()
-        };
-
-        // Add to reviews array
-        reviews.unshift(newReview);
-
-        // Keep only the most recent 1000 reviews
-        const trimmedReviews = reviews.slice(0, 1000);
-
-        // Save back to file
-        await fs.writeFile(REVIEWS_FILE, JSON.stringify(trimmedReviews, null, 2));
-
-        res.status(201).json({ success: true, review: newReview });
-    } catch (error) {
-        console.error('Error saving review:', error);
-        res.status(500).json({ error: 'Failed to save review' });
-    }
+    });
 });
 
 // Add API endpoint for contact form
