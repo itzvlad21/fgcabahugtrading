@@ -1,3 +1,7 @@
 {
-  "packages": ["python", "build-essential"]
+  "packages": [
+    "python",
+    "build-essential",
+    "node-gyp"
+  ]
 }
