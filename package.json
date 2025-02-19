@@ -4,12 +4,11 @@
   "main": "script.js",
   "scripts": {
     "start": "node server.js",
-    "build": "npm install && npm rebuild sqlite3"
+    "build": "npm ci && npm rebuild bcrypt --build-from-source"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "engines": {
+    "node": "18.17.0"
+  },
   "dependencies": {
     "bcrypt": "^5.1.1",
     "chart.js": "^4.4.7",
@@ -25,8 +24,5 @@
     "sharp": "^0.33.5",
     "socket.io": "^4.8.1",
     "sqlite3": "^5.1.7"
-  },
-  "engines": {
-    "node": "18.17.0"
   }
 }
