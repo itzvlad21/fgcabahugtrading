@@ -3,7 +3,6 @@ const dataDir = path.join(__dirname, 'data');
 if (!fs.existsSync(dataDir)){
     fs.mkdirSync(dataDir, { recursive: true });
 }
-
 require('dotenv').config();
 const express = require('express');
 const nodemailer = require('nodemailer');
@@ -11,7 +10,6 @@ const rateLimit = require('express-rate-limit');
 const cors = require('cors');
 const app = express();
 const port = 3000;
-const fs = require('fs').promises;
 const path = require('path');  // Only one path import
 const sqlite3 = require('sqlite3').verbose();
 const multer = require('multer');
