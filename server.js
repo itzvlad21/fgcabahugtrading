@@ -6,12 +6,11 @@ const cors = require('cors');
 const app = express();
 const port = 3000;
 const fs = require('fs').promises;
-const path = require('path');
+const path = require('path');  // Only one path import
 const sqlite3 = require('sqlite3').verbose();
 const multer = require('multer');
 const http = require('http');
 const socketIo = require('socket.io');
-const path = require('path');
 const { initializeDatabase, DB_PATH } = require('./database');
 const db = initializeDatabase();
 
