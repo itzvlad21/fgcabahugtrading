@@ -2,7 +2,9 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
 // Import your DB_PATH
-const DB_PATH = path.join(__dirname, 'data', 'database.sqlite');
+const DB_PATH = process.env.NODE_ENV === 'production'
+  ? '/opt/render/project/src/data/database.sqlite'
+  : path.join(__dirname, 'data', 'database.sqlite');
 
 function initializeDatabase() {
     const db = new sqlite3.Database(DB_PATH, (err) => {
